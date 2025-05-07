@@ -31,8 +31,9 @@ Future<void> configureAmplify() async {
       final auth=AmplifyAuthCognitoDart();
        final api= AmplifyAPI(
           options: APIPluginOptions(modelProvider: ModelProvider.instance));
-      await Amplify.addPlugin([api, auth]);
-
+      await Amplify.addPlugin( auth);
+      await Amplify.addPlugin(api);
+      await Amplify.configure(amplifyconfig);
       debugPrint("✅ Amplify configured successfully");
   } catch (e) {
     debugPrint("❌ Error configuring Amplify: $e");

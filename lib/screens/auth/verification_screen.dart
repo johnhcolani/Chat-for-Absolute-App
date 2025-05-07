@@ -1,16 +1,23 @@
+import 'package:chat_for_absolute_app/screens/messages/message_screen.dart';
+import 'package:chat_for_absolute_app/shared/extentions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../constants.dart';
+import '../../providers/user_provider.dart';
 import 'components/logo_with_title.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({Key? key}) : super(key: key);
-
+  const VerificationScreen({Key? key, required this.username})
+      : super(key: key);
+final String username;
   @override
   _VerificationScreenState createState() => _VerificationScreenState();
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
   final _formKey = GlobalKey<FormState>();
+  late String _otpCode;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,8 +27,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
         children: [
           const SizedBox(height: defaultPadding),
           Form(
+            key: _formKey,
             child: TextFormField(
-              onSaved: (otpCode) {},
+              onSaved: (otpCode) {
+                _otpCode = otpCode!;
+              },
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.send,
               decoration: const InputDecoration(hintText: "Enter OTP"),
@@ -29,7 +39,26 @@ class _VerificationScreenState extends State<VerificationScreen> {
           ),
           const SizedBox(height: defaultPadding),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async{
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                final result = await context
+                    .read<UserProvider>()
+                    .confirmSignUp(username: widget.username, code: _otpCode);
+                result.fold(
+                      (error) => context.showError(error),
+                (_) {
+
+                        Navigator.pushAndRemoveUntil(context,
+                            MaterialPageRoute(
+                                builder: (context) => const MessagesScreen()),
+                                (route) => false,
+                        );
+                            },
+                        );
+
+              }
+            },
             child: const Text("Validate"),
           ),
         ],

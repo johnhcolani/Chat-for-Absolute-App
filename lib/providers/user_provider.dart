@@ -19,5 +19,14 @@ class UserProvider with ChangeNotifier {
     _setIsLoading(false);
     return response;
   }
-
+  Future<Either<String, bool>> confirmSignUp(
+      {required String username, required String code})async {
+    _setIsLoading(true);
+    final response = await _userRepository.ConfirmSignUp(
+        username: username,
+        code: code
+    );
+    _setIsLoading(false);
+    return response;
+  }
 }

@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "chatforabsoluteapp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-chatforabsoluteapp-dev-8df1d-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/0f8c7785ff97c49d5cbd7d3e139d39c4bb11fa4a"
+}

@@ -9,7 +9,7 @@ ThemeData lightThemeData(BuildContext context) {
     appBarTheme: appBarTheme,
     iconTheme: const IconThemeData(color: kContentColorLightTheme),
     textTheme:
-        Theme.of(context).textTheme.apply(bodyColor: Colors.white),
+        Theme.of(context).textTheme.apply(bodyColor: kSecondaryColor),
     colorScheme: const ColorScheme.light(
       primary: kPrimaryColor,
       secondary: kContentColorDarkTheme,

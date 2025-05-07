@@ -11,5 +11,73 @@
       "StackId": "arn:aws:cloudformation:us-east-1:050752646199:stack/amplify-chatforabsoluteapp-dev-8df1d/4e0e0a00-2adc-11f0-87c3-0affdedb5a11",
       "AmplifyAppId": "d5l45qet83xx7"
     }
+  },
+  "auth": {
+    "chatforabsoluteappe7b60f80": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-chatforabsoluteapp-dev-8df1d-deployment/amplify-cfn-templates/auth/chatforabsoluteappe7b60f80-cloudformation-template.json",
+        "logicalId": "authchatforabsoluteappe7b60f80"
+      },
+      "lastPushTimeStamp": "2025-05-07T01:23:53.629Z",
+      "output": {
+        "UserPoolId": "us-east-1_bvPRAB297",
+        "AppClientIDWeb": "ebnt6b719529ecelhs9ta1dok",
+        "AppClientID": "7f7haglkvdthi71etgkdumdab0",
+        "IdentityPoolId": "us-east-1:3f7bbb73-2d2f-48c6-be52-1b14e637c320",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:050752646199:userpool/us-east-1_bvPRAB297",
+        "IdentityPoolName": "chatforabsoluteappe7b60f80_identitypool_e7b60f80__dev",
+        "UserPoolName": "chatforabsoluteappe7b60f80_userpool_e7b60f80"
+      },
+      "lastPushDirHash": "+9mTYRkya60hqkTR0K0oKEWz/PM="
+    }
+  },
+  "api": {
+    "chatforabsoluteapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "geylvhvwujhsxogtc22j2psl7i",
+        "GraphQLAPIEndpointOutput": "https://l752q5yakrd7namzbbxkxvhctm.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-7rgwcgsn25aw7hwaq7uakhzpba"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-chatforabsoluteapp-dev-8df1d-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apichatforabsoluteapp"
+      },
+      "lastPushTimeStamp": "2025-05-07T01:23:53.629Z",
+      "lastPushDirHash": "LwWfpwAL4TDuTHsLA+J2WceT+Qc="
+    }
   }
 }

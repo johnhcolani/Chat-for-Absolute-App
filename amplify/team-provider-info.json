@@ -10,6 +10,14 @@
       "StackName": "amplify-chatforabsoluteapp-dev-8df1d",
       "StackId": "arn:aws:cloudformation:us-east-1:050752646199:stack/amplify-chatforabsoluteapp-dev-8df1d/4e0e0a00-2adc-11f0-87c3-0affdedb5a11",
       "AmplifyAppId": "d5l45qet83xx7"
+    },
+    "categories": {
+      "auth": {
+        "chatforabsoluteappe7b60f80": {}
+      },
+      "api": {
+        "chatforabsoluteapp": {}
+      }
     }
   }
 }

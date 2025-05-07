@@ -8,8 +8,8 @@ import 'components/logo_with_title.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({Key? key, required this.username})
-      : super(key: key);
-final String username;
+    : super(key: key);
+  final String username;
   @override
   _VerificationScreenState createState() => _VerificationScreenState();
 }
@@ -39,24 +39,22 @@ class _VerificationScreenState extends State<VerificationScreen> {
           ),
           const SizedBox(height: defaultPadding),
           ElevatedButton(
-            onPressed: () async{
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                final result = await context
-                    .read<UserProvider>()
-                    .confirmSignUp(username: widget.username, code: _otpCode);
-                result.fold(
-                      (error) => context.showError(error),
-                (_) {
-
-                        Navigator.pushAndRemoveUntil(context,
-                            MaterialPageRoute(
-                                builder: (context) => const MessagesScreen()),
-                                (route) => false,
-                        );
-                            },
-                        );
-
+                final result = await context.read<UserProvider>().confirmSignUp(
+                  username: widget.username,
+                  code: _otpCode,
+                );
+                result.fold((error) => context.showError(error), (_) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MessagesScreen(),
+                    ),
+                    (route) => false,
+                  );
+                });
               }
             },
             child: const Text("Validate"),

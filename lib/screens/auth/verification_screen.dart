@@ -46,7 +46,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   username: widget.username,
                   code: _otpCode,
                 );
-                result.fold((error) => context.showError(error), (_) {
+                result.fold(
+                        (error) => context.showError(error),
+                        (_) {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

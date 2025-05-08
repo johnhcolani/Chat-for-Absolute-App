@@ -84,7 +84,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 padding: const EdgeInsets.symmetric(vertical: defaultPadding),
                 child: ElevatedButton(
                   onPressed: () async {
-                    signUp(_username, _email, _password);
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      signUp(_username, _password, _email);
+                    }
                   },
                   child: const Text(
                     "Sign Up",

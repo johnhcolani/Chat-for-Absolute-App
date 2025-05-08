@@ -19,8 +19,8 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(height: constraints.maxHeight * 0.05),
                 Image.asset(
                   MediaQuery.of(context).platformBrightness == Brightness.light
-                      ? "assets/images/asd_logo.png"
-                      : "assets/images/asd_logo.png",
+                      ? "assets/images/ic_launcher.png"
+                      : "assets/images/ic_launcher.png",
                   height: 146,
                 ),
                 SizedBox(height: constraints.maxHeight * 0.05),

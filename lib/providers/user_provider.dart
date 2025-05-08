@@ -47,6 +47,7 @@ class UserProvider with ChangeNotifier {
     return response;
   }
 
+
   Future<Either<String, SignOutResult>> signOut() async {
     _setIsLoading(true);
     final response = await _userRepository.signOut();

@@ -21,7 +21,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   late String _username, _email, _password;
 
-  void signUp(String username,String password, String email, ) async {
+  void signUp(String username,String email,String password ) async {
 
       final signUpResult = await context
           .read<UserProvider>()

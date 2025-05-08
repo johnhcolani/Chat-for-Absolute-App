@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightThemeData(context),
       themeMode: ThemeMode.light,
-      home: const SigninOrSignupScreen(),
+      home: const WelcomeScreen(),
     );
   }
 }

@@ -53,5 +53,23 @@ Future<Either<String, SignInResult>> signIn(
       return left(e.message);
     }
 }
+Future<Either<String, SignOutResult>> signOut() async {
+  try {
+    final result = await Amplify.Auth.signOut();
+    return right(result);
+  } on AuthException catch (e) {
+    return left(e.message);
+  }
+}
+
+
+Future<AuthSession> isUserLoggedIn() async {
+    return Amplify.Auth.fetchAuthSession();
+
+}
+
+Future<AuthUser?> getCurrentUser() async {
+    return Amplify.Auth.getCurrentUser();
+}
 
 }

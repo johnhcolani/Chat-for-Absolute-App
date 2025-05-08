@@ -89,7 +89,9 @@ class _SignUpFormState extends State<SignUpForm> {
                       signUp(_username, _password, _email);
                     }
                   },
-                  child: const Text(
+                  child: context.watch<UserProvider>().isLoading
+        ? const CircularProgressIndicator(color: Colors.white,)
+        : const Text(
                     "Sign Up",
                     style: TextStyle(color: Colors.white),
                   ),

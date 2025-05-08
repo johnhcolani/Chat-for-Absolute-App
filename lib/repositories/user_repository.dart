@@ -41,5 +41,17 @@ Future<Either<String, bool>> confirmSignUp({required String username, required S
       return left(e.message);
     }
 }
+Future<Either<String, SignInResult>> signIn(
+  {required String username, required String password}) async {
+    try{
+      final result = await Amplify.Auth.signIn(
+        username: username,
+        password: password,
+      );
+      return right(result);
+    }on AuthException catch (e){
+      return left(e.message);
+    }
+}
 
 }

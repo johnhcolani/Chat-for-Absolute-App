@@ -1,3 +1,4 @@
+import 'package:chat_for_absolute_app/screens/auth/sign_in_screen.dart';
 import 'package:chat_for_absolute_app/screens/messages/message_screen.dart';
 import 'package:chat_for_absolute_app/shared/extentions.dart';
 import 'package:flutter/material.dart';
@@ -52,14 +53,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MessagesScreen(),
+                      builder: (context) => const SignInScreen(),
                     ),
                     (route) => false,
                   );
                 });
               }
             },
-            child: const Text("Validate"),
+            child: context.watch<UserProvider>().isLoading
+              ? const CircularProgressIndicator(color: Colors.white,)
+              : const Text("Validate"),
           ),
         ],
       ),

@@ -6,6 +6,16 @@ type Todo {
   updatedAt: AWSDateTime!
 }
 
+type Message @aws_cognito_user_pools {
+  id: ID!
+  userId: String!
+  username: String!
+  message: String!
+  type: String!
+  createdAt: String!
+  updatedAt: AWSDateTime!
+}
+
 input ModelStringInput {
   ne: String
   eq: String
@@ -175,6 +185,9 @@ input ModelTodoFilterInput {
 type Query {
   getTodo(id: ID!): Todo
   listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
+  getMessage(id: ID!): Message @aws_cognito_user_pools
+  listMessages(filter: ModelMessageFilterInput, limit: Int, nextToken: String): ModelMessageConnection @aws_cognito_user_pools
+  messagesByDate(type: String!, createdAt: ModelStringKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelMessageFilterInput, limit: Int, nextToken: String): ModelMessageConnection @aws_cognito_user_pools
 }
 
 input ModelTodoConditionInput {
@@ -207,6 +220,9 @@ type Mutation {
   createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo
   updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo
   deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo
+  updateMessage(input: UpdateMessageInput!, condition: ModelMessageConditionInput): Message
+  deleteMessage(input: DeleteMessageInput!, condition: ModelMessageConditionInput): Message
+  createMessage(input: CreateMessageInput!, condition: ModelMessageConditionInput): Message @aws_cognito_user_pools
 }
 
 input ModelSubscriptionTodoFilterInput {
@@ -223,4 +239,81 @@ type Subscription {
   onCreateTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["createTodo"])
   onUpdateTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["updateTodo"])
   onDeleteTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["deleteTodo"])
+  onCreateMessage(filter: ModelSubscriptionMessageFilterInput): Message @aws_subscribe(mutations: ["createMessage"]) @aws_cognito_user_pools
+  onUpdateMessage(filter: ModelSubscriptionMessageFilterInput): Message @aws_subscribe(mutations: ["updateMessage"]) @aws_cognito_user_pools
+  onDeleteMessage(filter: ModelSubscriptionMessageFilterInput): Message @aws_subscribe(mutations: ["deleteMessage"]) @aws_cognito_user_pools
+}
+
+type ModelMessageConnection @aws_cognito_user_pools {
+  items: [Message]!
+  nextToken: String
+}
+
+input ModelMessageFilterInput {
+  id: ModelIDInput
+  userId: ModelStringInput
+  username: ModelStringInput
+  message: ModelStringInput
+  type: ModelStringInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelMessageFilterInput]
+  or: [ModelMessageFilterInput]
+  not: ModelMessageFilterInput
+}
+
+input ModelMessageConditionInput {
+  userId: ModelStringInput
+  username: ModelStringInput
+  message: ModelStringInput
+  type: ModelStringInput
+  createdAt: ModelStringInput
+  and: [ModelMessageConditionInput]
+  or: [ModelMessageConditionInput]
+  not: ModelMessageConditionInput
+  updatedAt: ModelStringInput
+}
+
+input CreateMessageInput {
+  id: ID
+  userId: String!
+  username: String!
+  message: String!
+  type: String!
+  createdAt: String
+}
+
+input UpdateMessageInput {
+  id: ID!
+  userId: String
+  username: String
+  message: String
+  type: String
+  createdAt: String
+}
+
+input DeleteMessageInput {
+  id: ID!
+}
+
+input ModelSubscriptionMessageFilterInput {
+  id: ModelSubscriptionIDInput
+  userId: ModelSubscriptionStringInput
+  username: ModelSubscriptionStringInput
+  message: ModelSubscriptionStringInput
+  type: ModelSubscriptionStringInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionMessageFilterInput]
+  or: [ModelSubscriptionMessageFilterInput]
+}
+
+input ModelStringKeyConditionInput {
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  between: [String]
+  beginsWith: String
 }

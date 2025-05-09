@@ -40,7 +40,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-chatforabsoluteapp-dev-8df1d-deployment/amplify-cfn-templates/auth/chatforabsoluteappe7b60f80-cloudformation-template.json",
         "logicalId": "authchatforabsoluteappe7b60f80"
       },
-      "lastPushTimeStamp": "2025-05-07T01:23:53.629Z",
+      "lastPushTimeStamp": "2025-05-09T03:19:07.396Z",
       "output": {
         "UserPoolId": "us-east-1_bvPRAB297",
         "AppClientIDWeb": "ebnt6b719529ecelhs9ta1dok",
@@ -57,7 +57,15 @@
     "chatforabsoluteapp": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "chatforabsoluteappe7b60f80",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
       "output": {
         "authConfig": {
           "defaultAuthentication": {
@@ -66,7 +74,14 @@
               "apiKeyExpirationDays": 7
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authchatforabsoluteappe7b60f80"
+              }
+            }
+          ]
         },
         "GraphQLAPIIdOutput": "geylvhvwujhsxogtc22j2psl7i",
         "GraphQLAPIEndpointOutput": "https://l752q5yakrd7namzbbxkxvhctm.appsync-api.us-east-1.amazonaws.com/graphql",
@@ -76,8 +91,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-chatforabsoluteapp-dev-8df1d-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apichatforabsoluteapp"
       },
-      "lastPushTimeStamp": "2025-05-07T01:23:53.629Z",
-      "lastPushDirHash": "LwWfpwAL4TDuTHsLA+J2WceT+Qc="
+      "lastPushTimeStamp": "2025-05-09T03:19:07.772Z",
+      "lastPushDirHash": "fo4bSZknQyDBIthIQlOpLWAsQio="
     }
   }
 }

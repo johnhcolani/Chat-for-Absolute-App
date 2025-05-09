@@ -260,8 +260,14 @@
           "AppSyncApiName": "chatforabsoluteapp",
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": false,
+          "AuthCognitoUserPoolId": {
+            "Fn::GetAtt": [
+              "authchatforabsoluteappe7b60f80",
+              "Outputs.UserPoolId"
+            ]
+          },
           "S3DeploymentBucket": "amplify-chatforabsoluteapp-dev-8df1d-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/0f8c7785ff97c49d5cbd7d3e139d39c4bb11fa4a",
+          "S3DeploymentRootKey": "amplify-appsync-files/d90a9d0cc0bc775ff1ffce9eac109212c1dcc508",
           "env": "dev"
         }
       }

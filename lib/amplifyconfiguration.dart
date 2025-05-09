@@ -65,6 +65,12 @@ const amplifyconfig = '''{
                         "AuthMode": "API_KEY",
                         "ApiKey": "da2-7rgwcgsn25aw7hwaq7uakhzpba",
                         "ClientDatabasePrefix": "chatforabsoluteapp_API_KEY"
+                    },
+                    "chatforabsoluteapp_AMAZON_COGNITO_USER_POOLS": {
+                        "ApiUrl": "https://l752q5yakrd7namzbbxkxvhctm.appsync-api.us-east-1.amazonaws.com/graphql",
+                        "Region": "us-east-1",
+                        "AuthMode": "AMAZON_COGNITO_USER_POOLS",
+                        "ClientDatabasePrefix": "chatforabsoluteapp_AMAZON_COGNITO_USER_POOLS"
                     }
                 }
             }

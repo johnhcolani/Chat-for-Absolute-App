@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
+import 'message_text_field.dart';
 
 class ChatInputField extends StatelessWidget {
   const ChatInputField({
@@ -49,13 +50,8 @@ class ChatInputField extends StatelessWidget {
                           .withOpacity(0.64),
                     ),
                     const SizedBox(width: defaultPadding / 4),
-                    const Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: "Type message",
-                          border: InputBorder.none,
-                        ),
-                      ),
+                    Expanded(
+                      child: MessageTextField(),
                     ),
                     Icon(
                       Icons.attach_file,
@@ -84,3 +80,4 @@ class ChatInputField extends StatelessWidget {
     );
   }
 }
+

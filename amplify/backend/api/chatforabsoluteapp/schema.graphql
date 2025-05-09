@@ -9,8 +9,7 @@ type Todo @model {
 }
 type Message
 @model
-@auth(rules:[{allow: private, operations: [read, create]}])
-{
+@auth(rules: [{ allow: private }]){
   id: ID!
   userId: String!
   username: String!

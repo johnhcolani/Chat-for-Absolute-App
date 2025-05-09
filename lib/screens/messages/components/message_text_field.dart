@@ -5,6 +5,7 @@ import 'package:chat_for_absolute_app/shared/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/message_provider.dart';
 import '../../../providers/user_provider.dart';
 
 class MessageTextField extends StatefulWidget {
@@ -46,8 +47,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
               type: "Message",
               createdAt: DateTime.now().toString(),
             );
-            final response =
-            await context.read<MessageProvider>().sendMessage(message);
+            final response = await context.read<MessageProvider>().sendMessage(message);
             response.fold(
                 (error) => context.showError(error),
                 (resMessage){

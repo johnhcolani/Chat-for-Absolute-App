@@ -62,17 +62,25 @@ class MessageProvider with ChangeNotifier {
   /// Subscribe to new messages in real time
   void startSubscription() {
     print("📡 Starting subscription to onCreateMessage...");
-    _messageSubscription = _messageRepository
-        .subscribeToMessages()
-        .listen((response) {
+
+    _messageSubscription = _messageRepository.subscribeToMessages().listen((response) {
       if (response.data != null) {
-        print("📥 Subscription received: ${response.data!.message}");
-        addMessage(response.data!);
+        final incoming = response.data!;
+
+        // ✅ Only add if not already in list
+        final exists = _messages.any((m) => m.id == incoming.id);
+        if (!exists) {
+          print("📥 Subscription received: ${incoming.message}");
+          addMessage(incoming);
+        } else {
+          print("⚠️ Duplicate subscription ignored: ${incoming.message}");
+        }
       } else if (response.hasErrors) {
         print("❌ Subscription error: ${response.errors.first.message}");
       }
     });
   }
+
 
   /// Cancel the subscription when no longer needed
   void disposeSubscription() {

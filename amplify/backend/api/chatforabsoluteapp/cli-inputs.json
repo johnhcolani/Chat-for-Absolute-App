@@ -4,14 +4,10 @@
     "apiName": "chatforabsoluteapp",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "expirationTime": 7
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authchatforabsoluteappe7b60f80"
     },
-    "additionalAuthTypes": [
-      {
-        "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authchatforabsoluteappe7b60f80"
-      }
-    ]
+    "additionalAuthTypes": [],
+    "conflictResolution": {}
   }
 }

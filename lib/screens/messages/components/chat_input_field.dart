@@ -4,9 +4,7 @@ import '../../../constants.dart';
 import 'message_text_field.dart';
 
 class ChatInputField extends StatelessWidget {
-  const ChatInputField({
-    Key? key,
-  }) : super(key: key);
+  const ChatInputField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +48,7 @@ class ChatInputField extends StatelessWidget {
                           .withOpacity(0.64),
                     ),
                     const SizedBox(width: defaultPadding / 4),
-                    Expanded(
-                      child: MessageTextField(),
-                    ),
+                    const Expanded(child: MessageTextField()),
                     Icon(
                       Icons.attach_file,
                       color: Theme.of(context)
@@ -80,4 +76,3 @@ class ChatInputField extends StatelessWidget {
     );
   }
 }
-

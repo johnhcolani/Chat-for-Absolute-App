@@ -33,15 +33,17 @@ class UserProvider with ChangeNotifier {
     required String username,
     required String code,
   }) async {
-    _setIsLoading(true);
-    final response =
-    await _userRepository.ConfirmSignUp(username: username, code: code);
-    if (response.isRight()) {
-      _currentUser = await _userRepository.getCurrentUser();
+    try {
+      final result = await Amplify.Auth.confirmSignUp(
+        username: username,
+        confirmationCode: code,
+      );
+      return right(result.isSignUpComplete);
+    } on AuthException catch (e) {
+      return left(e.message);
     }
-    _setIsLoading(false);
-    return response;
   }
+
 
   /// Sign in and load current user info
   Future<Either<String, SignInResult>> signIn({

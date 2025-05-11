@@ -62,7 +62,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             },
             child: context.watch<UserProvider>().isLoading
               ? const CircularProgressIndicator(color: Colors.white,)
-              : const Text("Validate"),
+              : const Text("Validate",style: TextStyle(color: Colors.white),),
           ),
         ],
       ),

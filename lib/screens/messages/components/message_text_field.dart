@@ -7,8 +7,11 @@ import '../../../models/Message.dart';
 import '../../../providers/message_provider.dart';
 
 class MessageTextField extends StatefulWidget {
-  const MessageTextField({Key? key}) : super(key: key);
 
+  const MessageTextField({
+    Key? key,
+
+  }) : super(key: key);
   @override
   State<MessageTextField> createState() => _MessageTextFieldState();
 }
@@ -31,10 +34,12 @@ class _MessageTextFieldState extends State<MessageTextField> {
       final message = Message(
         userId: currentUser.userId,
         username: email,
+
         message: text,
         type: 'text',
         createdAt: DateTime.now().toIso8601String(),
       );
+
 
       final result =
       await context.read<MessageProvider>().sendMessage(message);

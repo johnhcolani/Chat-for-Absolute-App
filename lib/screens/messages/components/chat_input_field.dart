@@ -4,7 +4,11 @@ import '../../../constants.dart';
 import 'message_text_field.dart';
 
 class ChatInputField extends StatelessWidget {
-  const ChatInputField({Key? key}) : super(key: key);
+
+  const ChatInputField({
+    Key? key,
+   
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

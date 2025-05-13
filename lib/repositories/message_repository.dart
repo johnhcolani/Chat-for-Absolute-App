@@ -32,36 +32,42 @@ class MessageRepository {
   }
 
   Future<Either<String, List<Message>>> getLatestMessages() async {
-    const graphQLDocument = ''' query GetLatestMessages{
-    messagesByDate(type: "Message" sortDirection: DESC limit:4 ){
-      items{
-        id
-        message
-        username
-        type
-        userId
-        createdAt
-         }
+    const graphQLDocument = '''
+    query GetLatestMessages {
+      messagesByDate(type: "Message", sortDirection: DESC, limit: 4) {
+        items {
+          id
+          message
+          username
+          type
+          userId
+          createdAt
         }
-        
-    }''';
-try{
-  final response = await Amplify.API
-      .query(request: GraphQLRequest<String>(document: graphQLDocument))
-      .response;
+      }
+    }
+  ''';
 
-  if (response.data != null) {
-    Map<String, dynamic> data = json.decode(response.data!);
-    List items = data['messagesByDate']['items'];
-    List<Message> messages = items.map((message) => Message.fromJson(message)).toList();
-    return right(messages);
+    try {
+      final response = await Amplify.API
+          .query(request: GraphQLRequest<String>(document: graphQLDocument))
+          .response;
 
+      if (response.data != null) {
+        final decoded = json.decode(response.data!);
+        final messagesByDate = decoded['messagesByDate'];
+        if (messagesByDate != null && messagesByDate['items'] != null) {
+          final items = messagesByDate['items'] as List;
+          List<Message> messages = items.map((e) => Message.fromJson(e)).toList();
+          return right(messages);
+        }
+      }
+
+      return right([]);
+    } on ApiException catch (e) {
+      return left(e.message.toString());
+    }
   }
-  return right([]);
-}on ApiException catch(e){
-return left(e.message.toString());
-}
-  }
+
 
   Stream<GraphQLResponse<Message>> subscribeToMessages() {
     final subscriptionRequest = ModelSubscriptions.onCreate(Message.classType);

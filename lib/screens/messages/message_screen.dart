@@ -64,10 +64,15 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   if (messageProvider.isLoading) {
                     return const Center(child: CircularProgressIndicator());
                   }
+
                   if (messageProvider.errorMessage != null) {
-                    context.showError(messageProvider.errorMessage!);
+                    // ✅ Fix: schedule SnackBar after build
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      context.showError(messageProvider.errorMessage!);
+                    });
                     return const Center(child: Text('Error loading messages.'));
                   }
+
                   if (messageProvider.messages.isEmpty) {
                     return const Center(child: Text('No messages yet.'));
                   }

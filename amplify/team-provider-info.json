@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-chatforabsoluteapp-dev-8df1d-unauthRole",
       "StackName": "amplify-chatforabsoluteapp-dev-8df1d",
       "StackId": "arn:aws:cloudformation:us-east-1:050752646199:stack/amplify-chatforabsoluteapp-dev-8df1d/4e0e0a00-2adc-11f0-87c3-0affdedb5a11",
-      "AmplifyAppId": "d5l45qet83xx7"
+      "AmplifyAppId": "d5l45qet83xx7",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-chatforabsoluteapp-dev-8df1d-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -17,6 +18,11 @@
       },
       "api": {
         "chatforabsoluteapp": {}
+      },
+      "function": {
+        "chatforabsoluteappe7b60f80PostConfirmation": {
+          "GROUP": "absoluteUser"
+        }
       }
     }
   }

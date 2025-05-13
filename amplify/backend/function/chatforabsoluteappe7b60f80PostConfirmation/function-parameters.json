@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "chatforabsoluteappe7b60f80",
+  "functionName": "chatforabsoluteappe7b60f80PostConfirmation",
+  "resourceName": "chatforabsoluteappe7b60f80PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "C:\\snapshot\\amplify-cli\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "chatforabsoluteappe7b60f80PostConfirmation",
+  "skipEdit": true
+}

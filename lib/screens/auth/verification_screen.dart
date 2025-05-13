@@ -43,23 +43,33 @@ class _VerificationScreenState extends State<VerificationScreen> {
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
+
                 final result = await context.read<UserProvider>().confirmSignUp(
                   username: widget.username,
                   code: _otpCode,
                 );
+
                 result.fold(
-                        (error) => context.showError(error),
-                        (_) {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignInScreen(),
-                    ),
-                    (route) => false,
-                  );
-                });
+                      (error) => context.showError(error),
+                      (success) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('✅ Email confirmed! Please sign in.')),
+                      );
+
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const SignInScreen(),
+                        ),
+                            (route) => false,
+                      );
+                    });
+                  },
+                );
               }
             },
+
             child: context.watch<UserProvider>().isLoading
               ? const CircularProgressIndicator(color: Colors.white,)
               : const Text("Validate",style: TextStyle(color: Colors.white),),

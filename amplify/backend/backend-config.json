@@ -35,7 +35,6 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "chatforabsoluteappe7b60f80PostConfirmation",
           "triggerProvider": "Cognito"
         }
       ],

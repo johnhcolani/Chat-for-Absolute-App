@@ -14,15 +14,14 @@
     },
     "categories": {
       "auth": {
-        "chatforabsoluteappe7b60f80": {}
+        "chatforabsoluteappe7b60f80": {},
+        "userPoolGroups": {}
       },
       "api": {
         "chatforabsoluteapp": {}
       },
       "function": {
-        "chatforabsoluteappe7b60f80PostConfirmation": {
-          "GROUP": "absoluteUser"
-        }
+        "postConfirmationAbsolute": {}
       }
     }
   }
